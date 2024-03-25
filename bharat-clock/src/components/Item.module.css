@@ -1,13 +1,12 @@
 .alt-item {
-  background-color: black;
-  border: 2px solid blue;
   margin: 1px;
 }
 .alt-span {
-  color: white;
-  font-weight: 600;
+  text-align: center;
 }
-
+.button {
+  float: right;
+}
 /* css modules are defined using .module.css syntax 
 it helps in creating component specific styles and
 automatically generates unique class names to resolve

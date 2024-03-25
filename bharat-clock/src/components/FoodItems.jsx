@@ -1,3 +1,4 @@
+import FoodInput from "./FoodInput";
 import Item from "./Item";
 
 function FoodItems({ items }) {
@@ -7,6 +8,7 @@ function FoodItems({ items }) {
 
   return (
     <>
+      <FoodInput />
       <ul className="list-group">
         {items.map((item) => (
           <Item key={item} foodItem={item}></Item>
