@@ -1,9 +1,15 @@
 import Item from "./Item.jsx";
-function TodoItems({ todoItems }) {
+function TodoItems({ todoItems, handleOnDelete }) {
   return (
-    <div className="container">
+    <div className="item-container">
       {todoItems.map((item) => {
-        return <Item item={item} key={item.name}></Item>;
+        return (
+          <Item
+            item={item}
+            key={item.name}
+            handleOnDelete={handleOnDelete}
+          ></Item>
+        );
       })}
     </div>
   );

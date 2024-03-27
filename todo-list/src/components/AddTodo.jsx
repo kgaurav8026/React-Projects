@@ -1,5 +1,5 @@
 import { useState } from "react";
-function AddTodo({ handleOnChange }) {
+function AddTodo({ handleOnSubmit }) {
   let [itemName, setItemName] = useState("");
   let [itemDueDate, setDueDate] = useState("");
   const onChangeName = (event) => {
@@ -10,13 +10,13 @@ function AddTodo({ handleOnChange }) {
   };
 
   const onSubmit = () => {
-    handleOnChange(itemName, itemDueDate);
+    handleOnSubmit(itemName, itemDueDate);
     setItemName("");
     setDueDate("");
   };
 
   return (
-    <div className="container">
+    <div className="item-container">
       <div className="row alt-row">
         <div className="col-6">
           <input

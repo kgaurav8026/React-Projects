@@ -3,36 +3,26 @@ import TodoItems from "./components/TodoItems";
 import AddTodo from "./components/AddTodo";
 import AppName from "./components/AppName";
 import { useState } from "react";
+import WelcomeMessage from "./components/WelcomeMessage";
 
 function App() {
-  const dummyData = [
-    {
-      name: "Leetcode Contest",
-      dueDate: "22/03/2024",
-    },
-    {
-      name: "Github Contribution",
-      dueDate: "22/03/2024",
-    },
-    {
-      name: "Buy Blender",
-      dueDate: "22/03/2024",
-    },
-  ];
-
-  let [todoItems, setTodoItems] = useState(dummyData);
-  const handleOnChange = (itemName, itemDueDate) => {
+  let [todoItems, setTodoItems] = useState([]);
+  const handleOnSubmit = (itemName, itemDueDate) => {
     let newTodoItems = [...todoItems, { name: itemName, dueDate: itemDueDate }];
+    setTodoItems(newTodoItems);
+  };
+
+  const handleOnDelete = (deleteItem) => {
+    let newTodoItems = todoItems.filter((item) => item.name != deleteItem.name);
     setTodoItems(newTodoItems);
   };
 
   return (
     <center className="todo-container">
       <AppName />
-      <div className="items-container">
-        <AddTodo handleOnChange={handleOnChange} />
-        <TodoItems todoItems={todoItems} />
-      </div>
+      <AddTodo handleOnSubmit={handleOnSubmit} />
+      {todoItems.length == 0 && <WelcomeMessage />}
+      <TodoItems todoItems={todoItems} handleOnDelete={handleOnDelete} />
     </center>
   );
 }
