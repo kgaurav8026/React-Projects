@@ -15,9 +15,6 @@ function App() {
     }
   };
 
-  const handleOnChange = (event) => {
-    console.log(event.target.value);
-  };
   let [foodItems, addFoodItem] = useState([]);
 
   return (
@@ -26,10 +23,7 @@ function App() {
         <h1>Healthy Food</h1>
         <ErrorMessage items={foodItems}></ErrorMessage>
         <FoodInput handleOnKeyDown={handleOnKeyDown}></FoodInput>
-        <FoodItems
-          items={foodItems}
-          handleOnChange={handleOnChange}
-        ></FoodItems>
+        <FoodItems items={foodItems}></FoodItems>
       </Container>
       <Container>
         <p>Above is the list of food items that are good for your health</p>

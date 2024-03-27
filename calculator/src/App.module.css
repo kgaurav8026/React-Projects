@@ -1,7 +1,8 @@
 .calculator {
   border: 1px solid black;
   width: 200px;
-  border-radius: 5px;
+  border-radius: 15px;
+  background-color: darkgray;
 }
 
 .buttonsContainer {
@@ -13,4 +14,5 @@
   width: 45px;
   height: 45px;
   margin: 3px;
+  background: slategrey;
 }
