@@ -1,5 +1,6 @@
 import { useState } from "react";
-function AddTodo({ handleOnSubmit }) {
+import { MdOutlineAddCircle } from "react-icons/md";
+function AddTodo({ addNewItems }) {
   let [itemName, setItemName] = useState("");
   let [itemDueDate, setDueDate] = useState("");
   const onChangeName = (event) => {
@@ -9,14 +10,16 @@ function AddTodo({ handleOnSubmit }) {
     setDueDate(event.target.value);
   };
 
-  const onSubmit = () => {
-    handleOnSubmit(itemName, itemDueDate);
+  const handleOnAddButton = (event) => {
+    console.log(event);
+    event.preventDefault();
+    addNewItems(itemName, itemDueDate);
     setItemName("");
     setDueDate("");
   };
 
   return (
-    <div className="item-container">
+    <form className="item-container" onSubmit={handleOnAddButton}>
       <div className="row alt-row">
         <div className="col-6">
           <input
@@ -34,16 +37,12 @@ function AddTodo({ handleOnSubmit }) {
           ></input>
         </div>
         <div className="col-2">
-          <button
-            type="button"
-            className="btn btn-success alt-btn"
-            onClick={onSubmit}
-          >
-            Add
+          <button type="submit" className="btn btn-success alt-btn">
+            <MdOutlineAddCircle />
           </button>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
 export default AddTodo;

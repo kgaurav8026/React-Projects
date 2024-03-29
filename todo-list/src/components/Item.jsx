@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MdDelete } from "react-icons/md";
 const Item = ({ item, handleOnDelete }) => {
   const onDelete = () => {
     handleOnDelete(item);
@@ -13,7 +13,7 @@ const Item = ({ item, handleOnDelete }) => {
           className="btn btn-danger alt-btn"
           onClick={onDelete}
         >
-          Delete
+          <MdDelete />
         </button>
       </div>
     </div>

@@ -7,7 +7,7 @@ import WelcomeMessage from "./components/WelcomeMessage";
 
 function App() {
   let [todoItems, setTodoItems] = useState([]);
-  const handleOnSubmit = (itemName, itemDueDate) => {
+  const addNewItems = (itemName, itemDueDate) => {
     let newTodoItems = [...todoItems, { name: itemName, dueDate: itemDueDate }];
     setTodoItems(newTodoItems);
   };
@@ -20,7 +20,7 @@ function App() {
   return (
     <center className="todo-container">
       <AppName />
-      <AddTodo handleOnSubmit={handleOnSubmit} />
+      <AddTodo addNewItems={addNewItems} />
       {todoItems.length == 0 && <WelcomeMessage />}
       <TodoItems todoItems={todoItems} handleOnDelete={handleOnDelete} />
     </center>
