@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import { MdDelete } from "react-icons/md";
-const Item = ({ item, handleOnDelete }) => {
+import { TodoItemsContext } from "../store/todo-items-store";
+const Item = ({ item }) => {
+  const { deleteItem } = useContext(TodoItemsContext);
   const onDelete = () => {
-    handleOnDelete(item);
+    deleteItem(item);
   };
+
   return (
     <div className="row alt-row">
       <div className="col-6">{item.name}</div>

@@ -1,15 +1,12 @@
+import { useContext } from "react";
 import Item from "./Item.jsx";
-function TodoItems({ todoItems, handleOnDelete }) {
+import { TodoItemsContext } from "../store/todo-items-store.jsx";
+function TodoItems() {
+  const { todoItems } = useContext(TodoItemsContext);
   return (
     <div className="item-container">
       {todoItems.map((item) => {
-        return (
-          <Item
-            item={item}
-            key={item.name}
-            handleOnDelete={handleOnDelete}
-          ></Item>
-        );
+        return <Item item={item} key={item.name}></Item>;
       })}
     </div>
   );
