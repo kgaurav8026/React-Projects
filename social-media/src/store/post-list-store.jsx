@@ -2,6 +2,7 @@ import { createContext, useReducer } from "react";
 
 export const PostList = createContext({
   postList: [],
+  addInitialPosts: () => {},
   addPost: () => {},
   deletePost: () => {},
 });
@@ -12,12 +13,21 @@ const postListReducer = (currPostList, action) => {
     newPostList = currPostList.filter(
       (post) => post.id !== action.payload.postId
     );
+  } else if (action.type === "ADD_INITIAL_POSTS") {
+    newPostList = action.payload;
   } else if (action.type === "ADD_POST") {
     newPostList = [action.payload, ...currPostList];
   }
   return newPostList;
 };
 const PostListProvider = ({ children }) => {
+  const addInitialPosts = (posts) => {
+    dispatchPostList({
+      type: "ADD_INITIAL_POSTS",
+      payload: posts,
+    });
+  };
+
   const addPost = (userId, postTitle, postBody, reactions, tags) => {
     dispatchPostList({
       type: "ADD_POST",
@@ -39,33 +49,14 @@ const PostListProvider = ({ children }) => {
       },
     });
   };
-  const [postList, dispatchPostList] = useReducer(
-    postListReducer,
-    DEFAULT_POST_LIST
-  );
+  const [postList, dispatchPostList] = useReducer(postListReducer, []);
   return (
-    <PostList.Provider value={{ postList, addPost, deletePost }}>
+    <PostList.Provider
+      value={{ postList, addInitialPosts, addPost, deletePost }}
+    >
       {children}
     </PostList.Provider>
   );
 };
 
-const DEFAULT_POST_LIST = [
-  {
-    id: "1",
-    title: "Goa Vacation",
-    body: "Embarking on a Goa vacation filled with beach bliss, spice trails, and unforgettable moments. ",
-    reactions: 2,
-    userId: "user-9",
-    tags: ["Goa", "Party", "Vacation", "Beaches"],
-  },
-  {
-    id: "2",
-    title: "IT Job Market in Turmoil",
-    body: "The IT industry has witnessed significant layoffs this year,Will the situation improve in the coming year?",
-    reactions: 2,
-    userId: "user-69",
-    tags: ["Recession", "Unemployment", "IT"],
-  },
-];
 export default PostListProvider;
