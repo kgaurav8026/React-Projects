@@ -3,10 +3,9 @@ import { useContext, useEffect, useState } from "react";
 import { PostList as PostListData } from "../store/post-list-store";
 import WelcomeMessage from "./WelcomeMessage";
 import LoadingSpinner from "./LoadingSpinner";
-
 const PostList = () => {
   const { postList, addInitialPosts } = useContext(PostListData);
-  const [fetching, setFetching] = useState();
+  const [fetching, setFetching] = useState(false);
   useEffect(() => {
     setFetching(true);
     const controller = new AbortController();

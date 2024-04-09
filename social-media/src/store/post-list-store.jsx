@@ -14,7 +14,16 @@ const postListReducer = (currPostList, action) => {
       (post) => post.id !== action.payload.postId
     );
   } else if (action.type === "ADD_INITIAL_POSTS") {
-    newPostList = action.payload;
+    // Extract the IDs of the incoming posts
+    let incomingPostIds = new Set(action.payload.map((post) => post.id));
+
+    // Extract manually created Posts
+    let manuallyCreatedPosts = currPostList.filter(
+      (post) => !incomingPostIds.has(post.id)
+    );
+
+    // Combine manually created posts with incoming posts
+    newPostList = [...manuallyCreatedPosts, ...action.payload];
   } else if (action.type === "ADD_POST") {
     newPostList = [action.payload, ...currPostList];
   }
