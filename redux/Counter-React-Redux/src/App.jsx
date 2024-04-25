@@ -8,13 +8,13 @@ import PrivacyToggle from "./components/PrivacyToggle";
 import { useSelector } from "react-redux";
 
 function App() {
-  const toggle = useSelector((store) => store.toggle);
+  const privacy = useSelector((store) => store.privacy);
   return (
     <center className="px-4 py-5 my-5 text-center">
       <Container>
         <Header></Header>
         <div className="col-lg-6 mx-auto">
-          {toggle ? <PrivacyToggle /> : <DisplayCounter />}
+          {privacy ? <PrivacyToggle /> : <DisplayCounter />}
           <Controls></Controls>
         </div>
       </Container>
