@@ -1,9 +1,22 @@
 import { createStore } from "redux";
-const INITIAL_VALUE = {
-  counter: 0,
-  privacy: false,
-};
-const counterReducer = (store = INITIAL_VALUE, action) => {
+import { configureStore, createSlice } from "@reduxjs/toolkit";
+import counterSlice from "../components/Counter";
+import privacySlice from "../components/Privacy";
+const counterStore = configureStore({
+  reducer: {
+    counter: counterSlice.reducer,
+    privacy: privacySlice.reducer,
+  },
+});
+
+export default counterStore;
+
+/*const INITIAL_VALUE = {
+    counter: 0,
+    privacy: false,
+  };*/
+
+/*const counterReducer = (store = INITIAL_VALUE, action) => {
   if (action.type === "INCREMENT") {
     return { counter: store.counter + 1, privacy: store.privacy };
   } else if (action.type === "DECREMENT") {
@@ -22,8 +35,4 @@ const counterReducer = (store = INITIAL_VALUE, action) => {
     return { counter: store.counter, privacy: !store.privacy };
   }
   return store;
-};
-
-const counterStore = createStore(counterReducer);
-
-export default counterStore;
+};*/

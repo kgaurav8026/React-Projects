@@ -1,36 +1,28 @@
 import { useDispatch } from "react-redux";
 import { useRef } from "react";
+import { counterActions } from "./Counter";
+import { privacyActions } from "./Privacy";
+import PrivacyToggle from "./PrivacyToggle";
 const Controls = () => {
   const inputElement = useRef();
   const dispatch = useDispatch();
   const handleIncrement = () => {
-    dispatch({ type: "INCREMENT" });
+    dispatch(counterActions.increment());
   };
   const handleDecrement = () => {
-    dispatch({ type: "DECREMENT" });
+    dispatch(counterActions.decrement());
   };
+
   const handleAddition = () => {
-    dispatch({
-      type: "ADD",
-      payload: {
-        num: inputElement.current.value,
-      },
-    });
+    dispatch(counterActions.add(inputElement.current.value));
     inputElement.current.value = "";
   };
   const handleSubtraction = () => {
-    dispatch({
-      type: "SUB",
-      payload: {
-        num: inputElement.current.value,
-      },
-    });
+    dispatch(counterActions.sub(inputElement.current.value));
     inputElement.current.value = "";
   };
   const handleToggle = () => {
-    dispatch({
-      type: "TOGGLE",
-    });
+    dispatch(privacyActions.toggle());
   };
   return (
     <>
@@ -66,14 +58,14 @@ const Controls = () => {
           ref={inputElement}
         />
         <button type="button" className="btn btn-info" onClick={handleAddition}>
-          ADD
+          Add
         </button>
         <button
           type="button"
           className="btn btn-danger"
           onClick={handleSubtraction}
         >
-          SUB
+          Subtract
         </button>
       </div>
     </>
